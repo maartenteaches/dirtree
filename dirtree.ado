@@ -156,10 +156,10 @@ program define difile
     local doedit ".ado .do .mata .mps .mpb .md"
     local view ".sthlp .hlp .smcl .txt .log"
     
-    if `: list suffix in doedit' & "`link'" == "" {
+    if `: list suffix in doedit' & "`link'" == "" & `"`suffix'"' != "" {
         di `"{stata `"doedit "`path'""' :`file'}"'
     }
-    else if `: list suffix in view' & "`link'" == "" {
+    else if `: list suffix in view' & "`link'" == "" & `"`suffix'"' != ""  {
         di `"{stata `"view "`path'""':`file'}"'
     }
     else if "`suffix'" == ".dta" & "`link'" == "" {

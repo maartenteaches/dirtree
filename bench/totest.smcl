@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}D:\mijn documenten\projecten\stata\dirtree\bench/totest.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}14 Jun 2023, 17:25:39
+ {txt}opened on:  {res}15 Jun 2023, 12:08:00
 {txt}
 {com}. difile, file(foo.do) where(c:\temp)
 {res}{stata `"doedit "c:\temp\foo.do""' :foo.do}
@@ -37,6 +37,9 @@
 {txt}
 {com}. difile, file(foo.pdf) where(c:\temp)
 {res}foo.pdf
+{txt}
+{com}. difile, file(foo) where(c:\temp)
+{res}foo
 {txt}
 {com}. 
 . difile, file(foo.do) where(c:\temp)    nolink 
@@ -72,11 +75,14 @@
 {com}. difile, file(foo.pdf) where(c:\temp)   nolink
 {res}foo.pdf
 {txt}
+{com}. difile, file(foo) where(c:\temp)       nolink
+{res}foo
+{txt}
 {com}. log close
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}D:\mijn documenten\projecten\stata\dirtree\bench/totest.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}14 Jun 2023, 17:25:39
+ {txt}closed on:  {res}15 Jun 2023, 12:08:00
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

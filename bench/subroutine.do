@@ -40,6 +40,7 @@ difile, file(foo.txt) where(c:\temp)
 difile, file(foo.log) where(c:\temp)
 difile, file(foo.dta) where(c:\temp)
 difile, file(foo.pdf) where(c:\temp)
+difile, file(foo) where(c:\temp)
 
 difile, file(foo.do) where(c:\temp)    nolink 
 difile, file(foo.ado) where(c:\temp)   nolink
@@ -52,6 +53,7 @@ difile, file(foo.txt) where(c:\temp)   nolink
 difile, file(foo.log) where(c:\temp)   nolink
 difile, file(foo.dta) where(c:\temp)   nolink
 difile, file(foo.pdf) where(c:\temp)   nolink
+difile, file(foo) where(c:\temp)       nolink
 log close
 
 
@@ -132,6 +134,12 @@ assert `"`line'"'==`"{res}foo.pdf"'
 file read `fh' line
 assert `"`line'"'==`"{txt}"'
 file read `fh' line
+assert `"`line'"'==`"{com}. difile, file(foo) where(c:\temp)"'
+file read `fh' line
+assert `"`line'"'==`"{res}foo"'
+file read `fh' line
+assert `"`line'"'==`"{txt}"'
+file read `fh' line
 assert `"`line'"'==`"{com}. "'
 file read `fh' line
 assert `"`line'"'==`". difile, file(foo.do) where(c:\temp)    nolink "'
@@ -199,6 +207,14 @@ file read `fh' line
 assert `"`line'"'==`"{res}foo.pdf"'
 file read `fh' line
 assert `"`line'"'==`"{txt}"'
+file read `fh' line
+assert `"`line'"'==`"{com}. difile, file(foo) where(c:\temp)       nolink"'
+file read `fh' line
+assert `"`line'"'==`"{res}foo"'
+file read `fh' line
+assert `"`line'"'==`"{txt}"'
+
+file close `fh'
 
 
 exit
