@@ -3,7 +3,7 @@ local home = "D"
 cd "`home':\mijn documenten\projecten\stata\dirtree"
 cscript dirtree adofiles dirtree.ado
 
-do bench/dirtree.do "`home'"
-do bench/subroutine.do "`home'"
+do bench/dirtree.do 
+do bench/subroutine.do 
 
 exit

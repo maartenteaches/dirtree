@@ -1,4 +1,3 @@
-args home
 cscript "sub-routines"
 
 do dirtree.ado
@@ -8,11 +7,11 @@ cd bench
 getnames
 
 assert `"`files'"' == `""dirtree.do" "main.do" "subroutine.do" "totest.smcl""'
-assert `"`dirs'"' == `""foo""'
+assert `"`dirs'"' == `""bar" "foo""'
 
 getnames , hidden
 assert `"`files'"' == `"".foo.do" "dirtree.do" "main.do" "subroutine.do" "totest.smcl""'
-assert `"`dirs'"' == `"".bar" "foo""'
+assert `"`dirs'"' == `"".bar" "bar" "foo""'
 
 cd ..
 
@@ -20,12 +19,6 @@ cd ..
 local totest `"".foo  bar" .bar blup bla "en nog wat""'
 drophidden `totest'
 assert `"`list'"' == `""blup" "bla" "en nog wat""'
-
-// anythingthere
-anythingthere bench
-assert `"`s(anything)'"' == "something"
-anythingthere bench/foo
-assert `"`s(anything)'"' == "nothing"
 
 //difile
 log using bench/totest, replace

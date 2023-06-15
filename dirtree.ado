@@ -9,7 +9,7 @@ program define dirtree
         qui cd `"`dir'"'
     }
     
-    capture noisily main, `options'
+    capture noisily main, `options' directory("")
     
     if _rc {
         cd `"`odir'"'
@@ -23,51 +23,50 @@ end
 
 program define main
     version 14
-    syntax, [level(integer 0) hidden ONLYDirs where(string) nolink]
+    syntax, [directory(string) hidden ONLYDirs where(string) nolink]
     
     getnames, `hidden'  // makes locals dirs and files
     
     local kd : word count `dirs'
     local kf : word count `files'
-    local nofiles = (`kf'==0 | "`onlydirs'" != "")
     
     local lastchild `"as txt "└── ""'
     local child `"as txt "├── ""'
-    local directory =  `level'*"│   "
-    local directory `"as txt "`directory'""'
     local enddir `" as txt " \""'
 
-    if `level' == 0 {
+    if "`directory'" == "" {
         mata: st_local("root",pathbasename(st_global("c(pwd)")))
         di as result "`root'"  `enddir'
         local where = c(pwd)
     }
-
-    local i = 1
-    foreach dir of local dirs {
-        anythingthere `dir', `hidden' `onlydirs'
-        if `i++' == `kd' & `nofiles' == 1 &  "`s(anything)'" == "nothing" {
-            di `directory'`lastchild' as result "`dir'"  `enddir'
-        }
-        else {
-            di `directory'`child'  as result "`dir'" `enddir'
-        }
-        qui cd "`dir'"
-        mata : st_local("where_out", pathjoin("`where'", "`dir'"))
-        main, level(`=`level'+1') `hidden' `onlydirs' where("`where_out'") `link'
-        qui cd ..
-    }
+    
     if "`onlydirs'" == "" {
         local i = 1
         foreach file of local files {
-            if (`i++' == `kf') {
-                di `directory'`lastchild' _continue
+            if (`i++' == `kf' & `kd' == 0) {
+                di as txt "`directory'"`lastchild' _continue
             }
             else {
-                di `directory'`child' _continue
+                di as txt "`directory'"`child' _continue
             }
             difile, file("`file'") where("`where'") `link'
         }
+    }
+    
+    local i = 1
+    foreach dir of local dirs {
+        if `i++' == `kd'  {
+            local newdirectory "`directory'    "
+            di as txt "`directory'"`lastchild' as result "`dir'"  `enddir'
+        }
+        else {
+            local newdirectory "`directory'│   "
+            di as txt "`directory'"`child'  as result "`dir'" `enddir'
+        }
+        qui cd "`dir'"
+        mata : st_local("where_out", pathjoin("`where'", "`dir'"))
+        main, directory("`newdirectory'") `hidden' `onlydirs' where("`where_out'") `link'
+        qui cd ..
     }
 end
 
@@ -104,46 +103,6 @@ program define drophidden
     }
     local list = strtrim(`"`result'"')
     c_local list `"`list'"'
-end
-
-program define anythingthere, sclass
-    version 14
-    syntax anything(name=dir), [hidden onlydirs]
-    
-    local childfiles : dir "`dir'" files "*"
-    local childdirs : dir "`dir'" dirs "*"
-    
-    local something "nothing"
-    if "`onlydirs'" == "" {
-        foreach file of local childfiles {
-            if "`hidden'" == "" {
-                 if substr("`file'",1,1) != "." {
-                    local something = "something"
-                    continue, break
-                }
-            }
-            else {
-                local something = "something"
-                continue, break
-            }
-        }
-    }
-    foreach dir of local childdirs {
-        if "`hidden'" == "" {
-            if substr("`dir'",1,1) != "." {
-                local something = "something"
-                continue, break
-            }
-        }
-        else {
-            local something = "something"
-            continue, break
-        }
-    }
-
-
-    sreturn local anything = "`something'"
-    
 end
 
 program define difile

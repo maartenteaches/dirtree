@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}D:\mijn documenten\projecten\stata\dirtree\bench/totest.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}15 Jun 2023, 12:08:00
+ {txt}opened on:  {res}15 Jun 2023, 16:29:27
 {txt}
 {com}. difile, file(foo.do) where(c:\temp)
 {res}{stata `"doedit "c:\temp\foo.do""' :foo.do}
@@ -82,7 +82,7 @@
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}D:\mijn documenten\projecten\stata\dirtree\bench/totest.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}15 Jun 2023, 12:08:00
+ {txt}closed on:  {res}15 Jun 2023, 16:29:27
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
