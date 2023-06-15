@@ -20,6 +20,7 @@ For example the directory for this project looks like this (the bench directory 
 dirtree \
 ├── dirtree.ado
 ├── dirtree.sthlp
+├── readme.md
 └── bench \
     ├── dirtree.do
     ├── main.do
