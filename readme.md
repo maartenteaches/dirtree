@@ -8,7 +8,7 @@
 
 ## Description
 
-`dirtree` shows inside [Stata](www.stata.com) the content of a directory, including sub-directories, as a 
+`dirtree` shows inside [Stata](https://www.stata.com) the content of a directory, including sub-directories, as a 
 tree. By default, files that can be opened in Stata are shown as clickable links.
 
 For example the directory for this project looks like this (the bench directory contains various dummy files and directories that are there for testing):
@@ -35,7 +35,7 @@ dirtree \
 
 ## Requires
 
-[Stata](www.stata.com) version 14 or higher
+[Stata](https://www.stata.com) version 14 or higher
 
 ## Author
 
