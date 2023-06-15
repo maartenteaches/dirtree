@@ -27,6 +27,7 @@ file read `fh' line
 file read `fh' line
 file read `fh' line
 
+
 assert `"`line'"'==`". dirtree "'
 file read `fh' line
 assert `"`line'"'==`"{res}dirtree{txt} \"'
@@ -34,6 +35,8 @@ file read `fh' line
 assert `"`line'"'==`"├── {res}{stata `"doedit "`c(pwd)'\dirtree.ado""' :dirtree.ado}"'
 file read `fh' line
 assert `"`line'"'==`"{txt}├── {res}{stata `"view "`c(pwd)'\dirtree.sthlp""':dirtree.sthlp}"'
+file read `fh' line
+assert `"`line'"'==`"{txt}├── {res}{stata `"doedit "`c(pwd)'\readme.md""' :readme.md}"'
 file read `fh' line
 assert `"`line'"'==`"{txt}└── {res}bench{txt} \"'
 file read `fh' line
@@ -68,6 +71,8 @@ file read `fh' line
 assert `"`line'"'==`"├── {res}dirtree.ado"'
 file read `fh' line
 assert `"`line'"'==`"{txt}├── {res}dirtree.sthlp"'
+file read `fh' line
+assert `"`line'"'==`"{txt}├── {res}readme.md"'
 file read `fh' line
 assert `"`line'"'==`"{txt}└── {res}bench{txt} \"'
 file read `fh' line
@@ -144,6 +149,7 @@ file read `fh' line
 assert `"`line'"'==`"{res}{txt}"'
 file read `fh' line
 assert `"`line'"'==`"{com}. log close"'
+
 
 file close `fh'
 
