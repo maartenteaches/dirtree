@@ -23,7 +23,8 @@ end
 
 program define main
     version 14
-    syntax, [directory(string) hidden ONLYDirs where(string) nolink]
+    syntax, [hidden ONLYDirs nolink           /// options for users
+            where(string) directory(string)]  //  "bookkeeping" options
     
     getnames, `hidden'  // makes locals dirs and files
     
@@ -34,35 +35,39 @@ program define main
     local child `"as txt "├── ""'
     local enddir `" as txt " \""'
 
+    // display the root
     if "`directory'" == "" {
         mata: st_local("root",pathbasename(st_global("c(pwd)")))
         di as result "`root'"  `enddir'
         local where = c(pwd)
     }
-    
+
+    // display the files
     if "`onlydirs'" == "" {
         local i = 1
         foreach file of local files {
-            if (`i++' == `kf' & `kd' == 0) {
+            if (`i++' == `kf' & `kd' == 0) { // last item in directory
                 di as txt "`directory'"`lastchild' _continue
             }
-            else {
+            else { // not last item
                 di as txt "`directory'"`child' _continue
             }
             difile, file("`file'") where("`where'") `link'
         }
     }
-    
+
+    // display the directories
     local i = 1
     foreach dir of local dirs {
-        if `i++' == `kd'  {
+        if `i++' == `kd'  { // last directory
             local newdirectory "`directory'    "
             di as txt "`directory'"`lastchild' as result "`dir'"  `enddir'
         }
-        else {
+        else { // not last directory
             local newdirectory "`directory'│   "
             di as txt "`directory'"`child'  as result "`dir'" `enddir'
         }
+        // use recursion to display what is inside those directories
         qui cd "`dir'"
         mata : st_local("where_out", pathjoin("`where'", "`dir'"))
         main, directory("`newdirectory'") `hidden' `onlydirs' where("`where_out'") `link'
