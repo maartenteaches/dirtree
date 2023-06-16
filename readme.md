@@ -30,9 +30,9 @@ dirtree \
         └── something \
 ```
 
-## Requires
+## Requirements and use
 
-[Stata](https://www.stata.com) version 14 or higher
+This package requires [Stata](https://www.stata.com) version 14 or higher. The easiest way to install this is using E. F. Haghish's [github](https://haghish.github.io/github/) command. After you have installed that, you can install `dirtree` by typing in Stata: `github install maartenteaches/dirtree`. Alternatively, `dirtree` can be installed without the `github` command by typing in Stata `net install dirtree, from("https://raw.githubusercontent.com/maartenteaches/dirtree/main")`.
 
 ## Author
 
