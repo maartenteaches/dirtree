@@ -1,9 +1,9 @@
 {smcl}
 {com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
-       {txt}log:  {res}D:\Mijn documenten\projecten\stata\dirtree\bench/totest.smcl
+       {txt}log:  {res}c:\mijn documenten\projecten\stata\dirtree\bench/totest.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}16 Jun 2023, 12:54:01
+ {txt}opened on:  {res}10 Jun 2024, 14:59:03
 {txt}
 {com}. difile, file(foo.do) where(c:\temp)
 {res}{stata `"doedit "c:\temp\foo.do""' :foo.do}
@@ -80,9 +80,9 @@
 {txt}
 {com}. log close
       {txt}name:  {res}<unnamed>
-       {txt}log:  {res}D:\Mijn documenten\projecten\stata\dirtree\bench/totest.smcl
+       {txt}log:  {res}c:\mijn documenten\projecten\stata\dirtree\bench/totest.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}16 Jun 2023, 12:54:01
+ {txt}closed on:  {res}10 Jun 2024, 14:59:03
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

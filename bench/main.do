@@ -1,5 +1,5 @@
-local home = "D"
-*local home = "C"
+*local home = "D"
+local home = "C"
 cd "`home':\mijn documenten\projecten\stata\dirtree"
 cscript dirtree adofiles dirtree.ado
 
