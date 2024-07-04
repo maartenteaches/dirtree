@@ -64,7 +64,7 @@ program define main
             di as txt "`directory'"`lastchild' as result "`dir'"  `enddir'
         }
         else { // not last directory
-            local newdirectory "`directory'│   "
+            local newdirectory "`directory'{c |}   "
             di as txt "`directory'"`child'  as result "`dir'" `enddir'
         }
         // use recursion to display what is inside those directories
