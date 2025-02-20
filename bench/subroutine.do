@@ -7,11 +7,11 @@ cd bench
 getnames
 
 assert `"`files'"' == `""dirtree.do" "main.do" "subroutine.do" "totest.smcl""'
-assert `"`dirs'"' == `""bar" "foo""'
+assert `"`dirs'"' == `""bar" "foo" "with space""'
 
 getnames , hidden
 assert `"`files'"' == `"".foo.do" "dirtree.do" "main.do" "subroutine.do" "totest.smcl""'
-assert `"`dirs'"' == `"".bar" "bar" "foo""'
+assert `"`dirs'"' == `"".bar" "bar" "foo" "with space""'
 
 cd ..
 
