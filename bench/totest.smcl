@@ -3,86 +3,25 @@
       name:  {res}<unnamed>
        {txt}log:  {res}D:\mijn documenten\projecten\stata\dirtree\bench/totest.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}20 Feb 2025, 15:42:28
+ {txt}opened on:  {res}21 Feb 2025, 12:58:13
 {txt}
-{com}. difile, file(foo.do) where(c:\temp)
-{res}{stata `"doedit "c:\temp\foo.do""' :foo.do}
-{txt}
-{com}. difile, file(foo.ado) where(c:\temp)
-{res}{stata `"doedit "c:\temp\foo.ado""' :foo.ado}
-{txt}
-{com}. difile, file(foo.md) where(c:\temp)
-{res}{stata `"doedit "c:\temp\foo.md""' :foo.md}
-{txt}
-{com}. difile, file(foo.mata) where(c:\temp)
-{res}{stata `"doedit "c:\temp\foo.mata""' :foo.mata}
-{txt}
-{com}. difile, file(foo.sthlp) where(c:\temp)
-{res}{stata `"view "c:\temp\foo.sthlp""':foo.sthlp}
-{txt}
-{com}. difile, file(foo.hlp) where(c:\temp)
-{res}{stata `"view "c:\temp\foo.hlp""':foo.hlp}
-{txt}
-{com}. difile, file(foo.smcl) where(c:\temp)
-{res}{stata `"view "c:\temp\foo.smcl""':foo.smcl}
-{txt}
-{com}. difile, file(foo.txt) where(c:\temp)
-{res}{stata `"view "c:\temp\foo.txt""':foo.txt}
-{txt}
-{com}. difile, file(foo.log) where(c:\temp)
-{res}{stata `"view "c:\temp\foo.log""':foo.log}
-{txt}
-{com}. difile, file(foo.dta) where(c:\temp)
-{res}{stata `"use "c:\temp\foo.dta""':foo.dta}
-{txt}
-{com}. difile, file(foo.pdf) where(c:\temp)
-{res}foo.pdf
-{txt}
-{com}. difile, file(foo) where(c:\temp)
-{res}foo
-{txt}
-{com}. 
-. difile, file(foo.do) where(c:\temp)    nolink 
-{res}foo.do
-{txt}
-{com}. difile, file(foo.ado) where(c:\temp)   nolink
-{res}foo.ado
-{txt}
-{com}. difile, file(foo.md) where(c:\temp)    nolink
-{res}foo.md
-{txt}
-{com}. difile, file(foo.mata) where(c:\temp)  nolink
-{res}foo.mata
-{txt}
-{com}. difile, file(foo.sthlp) where(c:\temp) nolink
-{res}foo.sthlp
-{txt}
-{com}. difile, file(foo.hlp) where(c:\temp)   nolink
-{res}foo.hlp
-{txt}
-{com}. difile, file(foo.smcl) where(c:\temp)  nolink
-{res}foo.smcl
-{txt}
-{com}. difile, file(foo.txt) where(c:\temp)   nolink
-{res}foo.txt
-{txt}
-{com}. difile, file(foo.log) where(c:\temp)   nolink
-{res}foo.log
-{txt}
-{com}. difile, file(foo.dta) where(c:\temp)   nolink
-{res}foo.dta
-{txt}
-{com}. difile, file(foo.pdf) where(c:\temp)   nolink
-{res}foo.pdf
-{txt}
-{com}. difile, file(foo) where(c:\temp)       nolink
-{res}foo
-{txt}
+{com}. didir, dir(foo)
+{res}{stata `"cd "D:\mijn documenten\projecten\stata\dirtree\foo""':foo}{txt} \
+
+{com}. didir, dir(foo) root
+{stata `"cd "D:\mijn documenten\projecten\stata\dirtree""':foo}{txt} \
+
+{com}. didir, dir(foo) nolink
+{res}foo{txt} \
+
+{com}. didir, dir(foo) root nolink
+{res}foo{txt} \
+
 {com}. log close
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}D:\mijn documenten\projecten\stata\dirtree\bench/totest.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}20 Feb 2025, 15:42:28
+ {txt}closed on:  {res}21 Feb 2025, 12:58:13
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

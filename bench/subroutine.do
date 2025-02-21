@@ -209,5 +209,58 @@ assert `"`line'"'==`"{txt}"'
 
 file close `fh'
 
+// didir
+log using bench/totest, replace 
+didir, dir(foo)
+didir, dir(foo) root
+didir, dir(foo) nolink
+didir, dir(foo) root nolink
+log close
+
+tempname fh
+file open `fh' using `"bench/totest.smcl"', read text
+file read `fh' line
+file read `fh' line
+file read `fh' line
+file read `fh' line
+file read `fh' line
+file read `fh' line
+file read `fh' line
+file read `fh' line
+assert `"`line'"'==`"{com}. didir, dir(foo)"'
+file read `fh' line
+assert `"`line'"'==`"{res}{stata `"cd "D:\mijn documenten\projecten\stata\dirtree\foo""':foo}{txt} \"'
+file read `fh' line
+assert `"`line'"'==`""'
+file read `fh' line
+assert `"`line'"'==`"{com}. didir, dir(foo) root"'
+file read `fh' line
+assert `"`line'"'==`"{stata `"cd "D:\mijn documenten\projecten\stata\dirtree""':foo}{txt} \"'
+file read `fh' line
+assert `"`line'"'==`""'
+file read `fh' line
+assert `"`line'"'==`"{com}. didir, dir(foo) nolink"'
+file read `fh' line
+assert `"`line'"'==`"{res}foo{txt} \"'
+file read `fh' line
+assert `"`line'"'==`""'
+file read `fh' line
+assert `"`line'"'==`"{com}. didir, dir(foo) root nolink"'
+file read `fh' line
+assert `"`line'"'==`"{res}foo{txt} \"'
+file read `fh' line
+assert `"`line'"'==`""'
+file read `fh' line
+assert `"`line'"'==`"{com}. log close"'
+file read `fh' line
+file read `fh' line
+file read `fh' line
+file read `fh' line
+file read `fh' line
+file read `fh' line
+file read `fh' line
+file read `fh' line
+assert r(eof)==1
+file close `fh'
 
 exit
