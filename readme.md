@@ -1,4 +1,4 @@
-*v. 1.2.0*
+*v. 1.4.0*
 
 # `dirtree`: displaying the content of a directory as a tree
 
