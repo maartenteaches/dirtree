@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 1.3.0 21Feb2025 MLB}{...}
+{* *! version 1.4.0 24Feb2025 MLB}{...}
 {vieweralsosee "cd" "help cd"}{...}
 {vieweralsosee "dir" "help dir"}{...}
 {viewerjumpto "Syntax" "dirtree##syntax"}{...}
@@ -19,20 +19,24 @@
 {cmdab:dirtree} [{it:directory}]
 [{cmd:,} {it:options}]
 
-{synoptset 20 tabbed}{...}
+{synoptset 21 tabbed}{...}
 {synopthdr}
 {synoptline}
-{synopt:{opt cd}}change to the directory specified in {cmd:dir()}{p_end}
 {synopt:{opt hidden}}display hidden files and directories{p_end}
 {synopt:{opt onlyd:irs}}only display the directories and not the files{p_end}
-{synopt:{opt nolink}}files that can be opened in Stata are not shown as a link{p_end}
-{synopt:{opt export}}the lines of the tree are drawn with symbols that don't look
-so nice in Stata, but do look nicer when coppied into plain text{p_end}
 {synopt:{opt noexp:and}{cmd:[(}{it:list}{cmd:)]}}specifies that directories in 
 {it:list} will not be expanded. If no list is specified than no directory will be
 expanded.{p_end}
-{synopt:{opt maxdepth(#)}}specifies the maximum depth of sub-directories that 
+{synopt:{opt maxd:epth(#)}}specifies the maximum depth of sub-directories that 
 will be displayed{p_end}
+{synopt:{opt pat:tern(patternlist)}}specifies that only files matching a pattern 
+from {it:patternlist} are to be displayed, where the pattern matching is defined 
+by Stata's {help f_strmatch:strmatch(s1,s2)} function.
+{p_end}
+{synopt:{opt nolink}}files that can be opened in Stata are not shown as a link{p_end}
+{synopt:{opt export}}the lines of the tree are drawn with symbols that don't look
+so nice in Stata, but do look nicer when coppied into plain text{p_end}
+{synopt:{opt cd}}change to the directory specified in {cmd:dir()}{p_end}
 {synoptline}
 {p2colreset}{...}
 
@@ -52,24 +56,11 @@ directory.
 {title:Options}
 
 {phang}
-{opt cd} change the current working directory to the directory specified
-
-{phang}
 {opt hidden} display hidden directories and files, that is, files and directories 
 starting with a "."
 
 {phang}
 {opt onlydirs} Only display the directories and not the files
-
-{phang}
-{opt nolink} Shows just the file names. By default files that can be opened in 
-Stata are shown as a link that will open that file. 
-
-{phang}
-{opt export} the lines of the tree are drawn with symbols that don't look
-so nice in Stata, but do look nicer when coppied into plain text. This can be 
-useful when copying to a forum like Statalist. This option requires the 
-{cmd:nolink} option.
 
 {phang}
 {opt noexpand(list)} specifies that directories in {it:list} are not to be 
@@ -95,6 +86,26 @@ to {cmd:maxdepth(1)}
 {phang} 
 {opt maxdepth(#)} specifies the maximum depth of sub-directories that will be 
 displayed. The default is {cmd:maxdepth(.)}, i.e. show the entire tree.
+
+{phang}
+{opt nolink} Shows just the file names. By default files that can be opened in 
+Stata are shown as a link that will open that file. 
+
+{phang}
+{opt pat:tern(patternlist)} specifies that only files matching a pattern 
+from {it:patternlist} are to be displayed, where the pattern matching is defined 
+by Stata's {help f_strmatch:strmatch(s1,s2)} function. {it:patternlist} is a list
+of such patterns seperated by a space. For example, if we wanted to see only .do
+file and Stata data files, we would use {cmd:pattern(*.do *.dta)}
+
+{phang}
+{opt export} the lines of the tree are drawn with symbols that don't look
+so nice in Stata, but do look nicer when coppied into plain text. This can be 
+useful when copying to a forum like Statalist. This option requires the 
+{cmd:nolink} option.
+
+{phang}
+{opt cd} change the current working directory to the directory specified
 
 
 {marker examples}{...}

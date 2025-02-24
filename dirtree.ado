@@ -1,4 +1,4 @@
-*! version 1.3.0 21Feb2025 MLB
+*! version 1.4.0 24Feb2025 MLB
 program define dirtree
     version 14
     syntax [anything(id="directory" name=dir)], [DIR2(string) cd *]
@@ -32,7 +32,8 @@ program define main
     version 14
     syntax, [hidden ONLYDirs nolink export                     /// options for users
 	        NOEXPand(string asis) noEXPand2                    /// options for users  
-			maxdepth(numlist min=1 max=1 >0 integer missingok) /// options for users
+			MAXDepth(numlist min=1 max=1 >0 integer missingok) /// options for users
+			PATtern(passthru)                                  /// options for users
             where(string) directory(string)]                   /// "bookkeeping" options
 			depth(integer)                                     //  "bookkeeping" options
 
@@ -45,7 +46,7 @@ program define main
 		exit 198
 	}
 	
-	getnames, `hidden'  // makes locals dirs and files
+	getnames, `hidden' `pattern'  // makes locals dirs and files
 
 	
     local kd : word count `dirs'
@@ -104,11 +105,11 @@ program define main
 			mata : st_local("where_out", pathjoin("`where'", "`dir'"))
 			main, directory("`newdirectory'") `hidden' `onlydirs' ///
 			      where("`where_out'") `link' `export'            ///
-				  noexpand(`noexpand') `noexpand2'                ///
+				  noexpand(`noexpand') `noexpand2' `pattern'      ///
 				  depth(`=`depth'+1') maxdepth(`maxdepth')
 			qui cd ..
 		}
-		else {
+		else { // what to display when directory is not expanded
 			mata: st_local("hiddendir", pathjoin(pwd(),"`dir'")) 
 			di as txt "`newdirectory'"`lastchild'_continue
 			if "`link'" == "" {
@@ -123,8 +124,10 @@ end
 
 program define getnames
     version 14
-    syntax, [hidden]
-    
+    syntax, [hidden pattern(string)]
+
+   	if `"`pattern'"' == "" local pattern = "*"
+
     local dirs: dir "." dirs "*"
     local result = ""
     if "`hidden'" == "" & `"`dirs'"' != "" {
@@ -132,7 +135,13 @@ program define getnames
         local dirs = `"`list'"'
     }
     
-    local files: dir "." files "*"
+	foreach pat of local pattern {
+		local temp: dir "." files "`pat'"
+		local files `"`files' `temp'"'
+	}
+	local files : list uniq files
+	local files : list retokenize files
+	
     local result = ""
     if "`hidden'" == "" & `"`files'"' != "" {
         drophidden `files'

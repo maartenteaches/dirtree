@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}D:\mijn documenten\projecten\stata\dirtree\bench/totest.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}21 Feb 2025, 12:58:13
+ {txt}opened on:  {res}24 Feb 2025, 14:10:17
 {txt}
 {com}. didir, dir(foo)
 {res}{stata `"cd "D:\mijn documenten\projecten\stata\dirtree\foo""':foo}{txt} \
@@ -21,7 +21,7 @@
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}D:\mijn documenten\projecten\stata\dirtree\bench/totest.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}21 Feb 2025, 12:58:13
+ {txt}closed on:  {res}24 Feb 2025, 14:10:17
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

@@ -13,6 +13,10 @@ getnames , hidden
 assert `"`files'"' == `"".foo.do" "dirtree.do" "main.do" "subroutine.do" "totest.smcl""'
 assert `"`dirs'"' == `"".bar" "bar" "foo" "with space""'
 
+getnames, pattern(*.smcl m*)
+assert `"`files'"' == `""totest.smcl" "main.do""'
+assert `"`dirs'"' == `""bar" "foo" "with space""'
+
 cd ..
 
 //drophidden

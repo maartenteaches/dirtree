@@ -25,6 +25,8 @@ dirtree, maxdepth(1)
 dirtree, maxdepth(2)
 
 dirtree, nolink export
+
+dirtree, pattern(*.do *.smcl)
 log close
 
 assert "`c(pwd)'" == "`home'"
@@ -32,9 +34,9 @@ assert "`c(pwd)'" == "`home'"
 tempname fh
 file open `fh' using `"bench/totest.smcl"', read text
 file read `fh' line
+assert `"`line'"'==`"{smcl}"'
 file read `fh' line
 file read `fh' line
-
 file read `fh' line
 file read `fh' line
 file read `fh' line
@@ -426,6 +428,38 @@ file read `fh' line
 assert `"`line'"'==`"{txt}    │   └── {res}something{txt} \"'
 file read `fh' line
 assert `"`line'"'==`"{res}{txt}    └── {res}with space{txt} \"'
+file read `fh' line
+assert `"`line'"'==`"{res}{txt}"'
+file read `fh' line
+assert `"`line'"'==`"{com}. "'
+file read `fh' line
+assert `"`line'"'==`". dirtree, pattern(*.do *.smcl)"'
+file read `fh' line
+assert `"`line'"'==`"{res}{stata `"cd "D:\mijn documenten\projecten\stata\dirtree""':dirtree}{txt} \"'
+file read `fh' line
+assert `"`line'"'==`"{c BLC}{c -}{c -} {res}{stata `"cd "D:\mijn documenten\projecten\stata\dirtree\bench""':bench}{txt} \"'
+file read `fh' line
+assert `"`line'"'==`"{res}{txt}    {c LT}{c -}{c -} {res}{stata `"doedit "D:\mijn documenten\projecten\stata\dirtree\bench\dirtree.do""' :dirtree.do}"'
+file read `fh' line
+assert `"`line'"'==`"{txt}    {c LT}{c -}{c -} {res}{stata `"doedit "D:\mijn documenten\projecten\stata\dirtree\bench\main.do""' :main.do}"'
+file read `fh' line
+assert `"`line'"'==`"{txt}    {c LT}{c -}{c -} {res}{stata `"doedit "D:\mijn documenten\projecten\stata\dirtree\bench\subroutine.do""' :subroutine.do}"'
+file read `fh' line
+assert `"`line'"'==`"{txt}    {c LT}{c -}{c -} {res}{stata `"view "D:\mijn documenten\projecten\stata\dirtree\bench\totest.smcl""':totest.smcl}"'
+file read `fh' line
+assert `"`line'"'==`"{txt}    {c LT}{c -}{c -} {res}{stata `"cd "D:\mijn documenten\projecten\stata\dirtree\bench\bar""':bar}{txt} \"'
+file read `fh' line
+assert `"`line'"'==`"{res}{txt}    {c LT}{c -}{c -} {res}{stata `"cd "D:\mijn documenten\projecten\stata\dirtree\bench\foo""':foo}{txt} \"'
+file read `fh' line
+assert `"`line'"'==`"{res}{txt}    {c |}   {c LT}{c -}{c -} {res}{stata `"doedit "D:\mijn documenten\projecten\stata\dirtree\bench\foo\untitled1.do""' :untitled1.do}"'
+file read `fh' line
+assert `"`line'"'==`"{txt}    {c |}   {c LT}{c -}{c -} {res}{stata `"cd "D:\mijn documenten\projecten\stata\dirtree\bench\foo\blup""':blup}{txt} \"'
+file read `fh' line
+assert `"`line'"'==`"{res}{txt}    {c |}   {c |}   {c BLC}{c -}{c -} {res}{stata `"doedit "D:\mijn documenten\projecten\stata\dirtree\bench\foo\blup\untitled2.do""' :untitled2.do}"'
+file read `fh' line
+assert `"`line'"'==`"{txt}    {c |}   {c BLC}{c -}{c -} {res}{stata `"cd "D:\mijn documenten\projecten\stata\dirtree\bench\foo\something""':something}{txt} \"'
+file read `fh' line
+assert `"`line'"'==`"{res}{txt}    {c BLC}{c -}{c -} {res}{stata `"cd "D:\mijn documenten\projecten\stata\dirtree\bench\with space""':with space}{txt} \"'
 file read `fh' line
 assert `"`line'"'==`"{res}{txt}"'
 file read `fh' line
